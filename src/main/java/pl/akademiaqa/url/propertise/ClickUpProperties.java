@@ -8,12 +8,21 @@ public class ClickUpProperties { //potrzebujemy tej klasy by móc odczytać prop
     private static final String TEAM_ID = "clickup.team.id";
 
     public static String getToken() {  //metody które zwrocą nam wartość propertisów
-        return getProperty(TOKEN);
+        if (getProperty(TOKEN).isEmpty() || getProperty(TOKEN).startsWith("YOUR")) {
+            return System.getProperty("TOKEN");
+        } else {
+            return getProperty(TOKEN);
+        }
+
 
     }
 
     public static String getTeamId() {
-        return getProperty(TEAM_ID);
+        if (getProperty(TEAM_ID).isEmpty() || getProperty(TEAM_ID).startsWith("YOUR")) {
+            return System.getProperty("TEAM_ID");
+        } else {
+            return getProperty(TEAM_ID);
+        }
 
     }
 
